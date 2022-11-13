@@ -14,7 +14,7 @@ def position_text_page_1(student_name, preferred_name, gender, age, dob, grade_l
     form_page_1 = Image.open("assets/1.jpg")
     draw = ImageDraw.Draw(form_page_1)
     # font = ImageFont.truetype(<font-file>, <font-size>)
-    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 45)
+    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 35)
     # draw.text((x, y),"Sample Text",(r,g,b))
 
     draw.text((625, 590), f"{student_name}", TEXT_COLOR, font=font)
@@ -65,7 +65,7 @@ def position_text_page_2(is_first_year, prior_school_address_phone_grade_year, e
     form_page_2 = Image.open("assets/2.jpg")
     draw = ImageDraw.Draw(form_page_2)
     # font = ImageFont.truetype(<font-file>, <font-size>)
-    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 45)
+    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 40)
     # draw.text((x, y),"Sample Text",(r,g,b))
 
     draw.text((1160, 230), f"{is_first_year}", TEXT_COLOR, font=font)
@@ -90,7 +90,7 @@ def position_text_page_3(school_directory, q1, q2, q3, q4, q5, q6, q7):
     form_page_3 = Image.open("assets/3.jpg")
     draw = ImageDraw.Draw(form_page_3)
     # font = ImageFont.truetype(<font-file>, <font-size>)
-    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 45)
+    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 40)
     # draw.text((x, y),"Sample Text",(r,g,b))
 
     # School Directory
@@ -154,7 +154,7 @@ def position_text_page_4(meningitis, meningitis_date, scarlet_fever, scarlet_fev
     form_page_4 = Image.open("assets/4.jpg")
     draw = ImageDraw.Draw(form_page_4)
     # font = ImageFont.truetype(<font-file>, <font-size>)
-    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 45)
+    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 40)
     # draw.text((x, y),"Sample Text",(r,g,b))
 
     # --------------------- All Diseases ---------------------
@@ -297,7 +297,7 @@ def position_text_page_5(wear_glasses, wear_glasses_date, hearing_problem, heari
     form_page_4 = Image.open("assets/5.jpg")
     draw = ImageDraw.Draw(form_page_4)
     # font = ImageFont.truetype(<font-file>, <font-size>)
-    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 45)
+    font = ImageFont.truetype("font/Montserrat-Medium.ttf", 40)
     # draw.text((x, y),"Sample Text",(r,g,b))
 
     draw.text((700, 240), f"{wear_glasses}", TEXT_COLOR, font=font)
