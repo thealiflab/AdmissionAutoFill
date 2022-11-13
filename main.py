@@ -1,6 +1,6 @@
 # from paste_text import mail_text
 from functions import position_text_page_1, position_text_page_2, position_text_page_3, position_text_page_4, \
-    position_text_page_5
+    position_text_page_5, make_pdf
 from tkinter import *
 from tkinter import messagebox
 
@@ -393,3 +393,6 @@ position_text_page_5(wear_glasses=WearGlasses, wear_glasses_date=WearGlassesDate
                      mother_tongue=MotherTongue, spoken_home=SpokenHome, SEN=SEN, nature_of_need=NatureOfNeed,
                      i_confirm=IConfirm, medical_practitioner=MedicalPractitioner,
                      prescribed_medication=PrescribedMedication)
+
+
+make_pdf()
