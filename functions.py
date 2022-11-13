@@ -3,6 +3,7 @@ from PIL import Image, ImageFont, ImageDraw
 # pip install Pillow
 
 TEXT_COLOR = (0, 0, 0)
+STUDENT_NAME = ""
 
 
 def position_text_page_1(student_name, preferred_name, gender, age, dob, grade_level, address, nationality, religion,
@@ -16,6 +17,9 @@ def position_text_page_1(student_name, preferred_name, gender, age, dob, grade_l
     # font = ImageFont.truetype(<font-file>, <font-size>)
     font = ImageFont.truetype("font/Montserrat-Medium.ttf", 35)
     # draw.text((x, y),"Sample Text",(r,g,b))
+
+    global STUDENT_NAME
+    STUDENT_NAME = student_name
 
     draw.text((625, 590), f"{student_name}", TEXT_COLOR, font=font)
     draw.text((625, 660), f"{preferred_name}", TEXT_COLOR, font=font)
@@ -293,9 +297,10 @@ def position_text_page_4(meningitis, meningitis_date, scarlet_fever, scarlet_fev
 
 
 def position_text_page_5(wear_glasses, wear_glasses_date, hearing_problem, hearing_problem_date, child_other_problem,
-                         mother_tongue, spoken_home, SEN, nature_of_need, medical_practitioner, prescribed_medication, i_confirm):
-    form_page_4 = Image.open("assets/5.jpg")
-    draw = ImageDraw.Draw(form_page_4)
+                         mother_tongue, spoken_home, SEN, nature_of_need, medical_practitioner, prescribed_medication,
+                         i_confirm):
+    form_page_5 = Image.open("assets/5.jpg")
+    draw = ImageDraw.Draw(form_page_5)
     # font = ImageFont.truetype(<font-file>, <font-size>)
     font = ImageFont.truetype("font/Montserrat-Medium.ttf", 40)
     # draw.text((x, y),"Sample Text",(r,g,b))
@@ -318,9 +323,24 @@ def position_text_page_5(wear_glasses, wear_glasses_date, hearing_problem, heari
     draw.text((1500, 1400), f"{medical_practitioner}", TEXT_COLOR, font=font)
     draw.text((1800, 1520), f"{prescribed_medication}", TEXT_COLOR, font=font)
 
-
     draw.text((400, 2500), f"{i_confirm}", TEXT_COLOR, font=font)
 
+    form_page_5.save('output/o5.jpg')
 
 
-    form_page_4.save('output/o5.jpg')
+def make_pdf():
+    form_page_1 = Image.open(r'output/o1.jpg')
+    form_page_2 = Image.open(r'output/o2.jpg')
+    form_page_3 = Image.open(r'output/o3.jpg')
+    form_page_4 = Image.open(r'output/o4.jpg')
+    form_page_5 = Image.open(r'output/o5.jpg')
+
+    fp1 = form_page_1.convert('RGB')
+    fp2 = form_page_2.convert('RGB')
+    fp3 = form_page_3.convert('RGB')
+    fp4 = form_page_4.convert('RGB')
+    fp5 = form_page_5.convert('RGB')
+
+    image_list = [fp1, fp2, fp3, fp4, fp5]
+
+    fp1.save(rf"{STUDENT_NAME}.pdf", save_all=True, append_images=image_list)
