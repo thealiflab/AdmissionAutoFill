@@ -1,23 +1,69 @@
-from paste_text import mail_text
-from functions import position_text_page_1, position_text_page_2, position_text_page_3, position_text_page_4, position_text_page_5
+# from paste_text import mail_text
+from functions import position_text_page_1, position_text_page_2, position_text_page_3, position_text_page_4, \
+    position_text_page_5
+from tkinter import *
+from tkinter import messagebox
 
-mail_text.strip()
+MAIL_TEXT = ""
 
-mail_text = mail_text.splitlines()
 
-for (i, item) in enumerate(mail_text, start=1):
+def send_message():
+    global MAIL_TEXT
+    MAIL_TEXT = text_entry.get("1.0", 'end-1c')
+
+    if len(MAIL_TEXT) == 0:
+        messagebox.showerror("error", "Text field empty!")
+        exit()
+    elif len(MAIL_TEXT) <= 118:
+        messagebox.showerror("error", "Not enough entry text!")
+        exit()
+    else:
+        messagebox.showinfo(title="Success", message="Form has been generated successfully!", )
+        app.destroy()
+
+
+# window object
+app = Tk()
+app.grid_columnconfigure(1, weight=1)
+
+app.title('Admission Form')
+app.geometry('540x540')
+app.iconbitmap("assets/icon_sdis.ico")
+
+# Message
+copied_text = StringVar()
+instruction_label = Label(app, text='Paste the text', font=('bold', 14), pady=35)
+instruction_label.grid(row=0, column=1, sticky=N)
+text_entry = Text(app, width=50, height=20, font=("Bold", 10))
+text_entry.grid(row=1, column=1)
+
+# Buttons
+generate_btn = Button(app, text='Generate Form', width=12, height=2, command=send_message)
+generate_btn.grid(row=2, column=1, pady=20)
+
+
+# On Close
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        exit()
+
+
+app.protocol("WM_DELETE_WINDOW", on_closing)
+
+# Footer
+credit_label = Label(app, text='Developed by Alif © Springdale International School-2022', font=('bold', 7), pady=20)
+credit_label.grid(row=5, column=1, sticky=N)
+
+# start
+app.mainloop()
+
+MAIL_TEXT.strip()
+
+MAIL_TEXT = MAIL_TEXT.splitlines()
+
+for (i, item) in enumerate(MAIL_TEXT, start=1):
     print(i - 1, item)
 
-
-# n = 1
-# language = ""
-# for line in mail_text:
-#     # print(f"{n} + {line}")
-#     if n == 3:
-#         language = line
-#     n += 1
-#
-# print(language)
 
 def formatted_text(get_list):
     needed_list_part = get_list[1:]
@@ -30,41 +76,41 @@ def formatted_text(get_list):
 
 # -------------------------- 1.Student Information --------------------------
 
-StudentName_list = mail_text[2].split()
+StudentName_list = MAIL_TEXT[2].split()
 StudentName = formatted_text(StudentName_list)
 
-PreferredName_list = mail_text[3].split()
+PreferredName_list = MAIL_TEXT[3].split()
 PreferredName = formatted_text(PreferredName_list)
 
-Gender_list = mail_text[4].split()
+Gender_list = MAIL_TEXT[4].split()
 Gender = formatted_text(Gender_list)
 
-Age_list = mail_text[5].split()
+Age_list = MAIL_TEXT[5].split()
 Age = formatted_text(Age_list)
 
-DOB_list = mail_text[6].split()
+DOB_list = MAIL_TEXT[6].split()
 DOB = formatted_text(DOB_list)
 # DOB -> Year-Month-Date
 
-GradeLevel_list = mail_text[7].split()
+GradeLevel_list = MAIL_TEXT[7].split()
 GradeLevel = formatted_text(GradeLevel_list)
 
-Address_list = mail_text[8].split()
+Address_list = MAIL_TEXT[8].split()
 Address = formatted_text(Address_list)
 
-Nationality_list = mail_text[9].split()
+Nationality_list = MAIL_TEXT[9].split()
 Nationality = formatted_text(Nationality_list)
 
-Religion_list = mail_text[10].split()
+Religion_list = MAIL_TEXT[10].split()
 Religion = formatted_text(Religion_list)
 
-PassportOrBirthCertificate_list = mail_text[11].split()
+PassportOrBirthCertificate_list = MAIL_TEXT[11].split()
 PassportOrBirthCertificate = formatted_text(PassportOrBirthCertificate_list)
 
-AcademicYear_list = mail_text[12].split()
+AcademicYear_list = MAIL_TEXT[12].split()
 AcademicYear = formatted_text(AcademicYear_list)
 
-EnrolmentMonth_list = mail_text[13].split()
+EnrolmentMonth_list = MAIL_TEXT[13].split()
 EnrolmentMonth = formatted_text(EnrolmentMonth_list)
 
 # print(f"""StudentName: {StudentName}
@@ -82,231 +128,231 @@ EnrolmentMonth = formatted_text(EnrolmentMonth_list)
 # -------------------------- x --------------------------
 # -------------------------- 2.Siblings Information --------------------------
 
-NameOfSibling_list = mail_text[17].split()
+NameOfSibling_list = MAIL_TEXT[17].split()
 NameOfSibling = formatted_text(NameOfSibling_list)
 
-PreviousSDIS_list = mail_text[18].split()
+PreviousSDIS_list = MAIL_TEXT[18].split()
 PreviousSDIS = formatted_text(PreviousSDIS_list)
 # -------------------------- x --------------------------
 # -------------------------- 3.Parent Information --------------------------
-FatherName_list = mail_text[22].split()
+FatherName_list = MAIL_TEXT[22].split()
 FatherName = formatted_text(FatherName_list)
 
-FatherOccupation_list = mail_text[23].split()
+FatherOccupation_list = MAIL_TEXT[23].split()
 FatherOccupation = formatted_text(FatherOccupation_list)
 
-FatherPhone_list = mail_text[24].split()
+FatherPhone_list = MAIL_TEXT[24].split()
 FatherPhone = formatted_text(FatherPhone_list)
 
-FatherEmail_list = mail_text[25].split()
+FatherEmail_list = MAIL_TEXT[25].split()
 FatherEmail = formatted_text(FatherEmail_list)
 
-MotherName_list = mail_text[26].split()
+MotherName_list = MAIL_TEXT[26].split()
 MotherName = formatted_text(MotherName_list)
 
-MotherOccupation_list = mail_text[27].split()
+MotherOccupation_list = MAIL_TEXT[27].split()
 MotherOccupation = formatted_text(MotherOccupation_list)
 
-MotherPhone_list = mail_text[28].split()
+MotherPhone_list = MAIL_TEXT[28].split()
 MotherPhone = formatted_text(MotherPhone_list)
 
-MotherEmail_list = mail_text[29].split()
+MotherEmail_list = MAIL_TEXT[29].split()
 MotherEmail = formatted_text(MotherEmail_list)
 # -------------------------- x --------------------------
 # -------------------------- 4.Emergency Contact --------------------------
-Contact1Name_list = mail_text[33].split()
+Contact1Name_list = MAIL_TEXT[33].split()
 Contact1Name = formatted_text(Contact1Name_list)
 
-Contact1Phone_list = mail_text[34].split()
+Contact1Phone_list = MAIL_TEXT[34].split()
 Contact1Phone = formatted_text(Contact1Phone_list)
 
-Contact1Email_list = mail_text[35].split()
+Contact1Email_list = MAIL_TEXT[35].split()
 Contact1Email = formatted_text(Contact1Email_list)
 
-Contact1Relation_list = mail_text[36].split()
+Contact1Relation_list = MAIL_TEXT[36].split()
 Contact1Relation = formatted_text(Contact1Relation_list)
 
-Contact2Name_list = mail_text[37].split()
+Contact2Name_list = MAIL_TEXT[37].split()
 Contact2Name = formatted_text(Contact2Name_list)
 
-Contact2Phone_list = mail_text[38].split()
+Contact2Phone_list = MAIL_TEXT[38].split()
 Contact2Phone = formatted_text(Contact2Phone_list)
 
-Contact2Email_list = mail_text[39].split()
+Contact2Email_list = MAIL_TEXT[39].split()
 Contact2Email = formatted_text(Contact2Email_list)
 
-Contact2Relation_list = mail_text[40].split()
+Contact2Relation_list = MAIL_TEXT[40].split()
 Contact2Relation = formatted_text(Contact2Relation_list)
 
-OtherInfo_list = mail_text[42].split()
+OtherInfo_list = MAIL_TEXT[42].split()
 OtherInfo = formatted_text(OtherInfo_list)
 # -------------------------- x --------------------------
 # -------------------------- 5.School Information --------------------------
-isFirstYear_list = mail_text[46].split()
+isFirstYear_list = MAIL_TEXT[46].split()
 isFirstYear = formatted_text(isFirstYear_list)
 
-PriorSchoolAddressPhoneGradeYear_list = mail_text[47].split()
+PriorSchoolAddressPhoneGradeYear_list = MAIL_TEXT[47].split()
 PriorSchoolAddressPhoneGradeYear = formatted_text(PriorSchoolAddressPhoneGradeYear_list)
 
-EmergencyTreatment_list = mail_text[48].split()
+EmergencyTreatment_list = MAIL_TEXT[48].split()
 EmergencyTreatment = formatted_text(EmergencyTreatment_list)
 
-DressCode_list = mail_text[49].split()
+DressCode_list = MAIL_TEXT[49].split()
 DressCode = formatted_text(DressCode_list)
 
-FieldTrip_list = mail_text[50].split()
+FieldTrip_list = MAIL_TEXT[50].split()
 FieldTrip = formatted_text(FieldTrip_list)
 
-PhotoVideoRelease_list = mail_text[51].split()
+PhotoVideoRelease_list = MAIL_TEXT[51].split()
 PhotoVideoRelease = formatted_text(PhotoVideoRelease_list)
 # -------------------------- x --------------------------
 # -------------------------- 6.School Directory --------------------------
-SchoolDirectory_list = mail_text[55].split()
+SchoolDirectory_list = MAIL_TEXT[55].split()
 SchoolDirectory = formatted_text(SchoolDirectory_list)
 
 # -------------------------- x --------------------------
 # -------------------------- 7.School Policies --------------------------
-Q1_list = mail_text[59].split()
+Q1_list = MAIL_TEXT[59].split()
 Q1 = formatted_text(Q1_list)
 
-Q2_list = mail_text[60].split()
+Q2_list = MAIL_TEXT[60].split()
 Q2 = formatted_text(Q2_list)
 
-Q3_list = mail_text[61].split()
+Q3_list = MAIL_TEXT[61].split()
 Q3 = formatted_text(Q3_list)
 
-Q4_list = mail_text[62].split()
+Q4_list = MAIL_TEXT[62].split()
 Q4 = formatted_text(Q4_list)
 
-Q5_list = mail_text[63].split()
+Q5_list = MAIL_TEXT[63].split()
 Q5 = formatted_text(Q5_list)
 
-Q6_list = mail_text[64].split()
+Q6_list = MAIL_TEXT[64].split()
 Q6 = formatted_text(Q6_list)
 
-Q7_list = mail_text[65].split()
+Q7_list = MAIL_TEXT[65].split()
 Q7 = formatted_text(Q7_list)
 
 # -------------------------- x --------------------------
 # -------------------------- 8. Medical Information --------------------------
 # Diseases
 
-Meningitis_list = mail_text[69].split()
-MeningitisDate_list = mail_text[70].split()
+Meningitis_list = MAIL_TEXT[69].split()
+MeningitisDate_list = MAIL_TEXT[70].split()
 Meningitis = formatted_text(Meningitis_list)
 MeningitisDate = formatted_text(MeningitisDate_list)
 
-ScarletFever_list = mail_text[71].split()
-ScarletFeverDate_list = mail_text[72].split()
+ScarletFever_list = MAIL_TEXT[71].split()
+ScarletFeverDate_list = MAIL_TEXT[72].split()
 ScarletFever = formatted_text(ScarletFever_list)
 ScarletFeverDate = formatted_text(ScarletFeverDate_list)
 
-Mumps_list = mail_text[73].split()
-MumpsDate_list = mail_text[74].split()
+Mumps_list = MAIL_TEXT[73].split()
+MumpsDate_list = MAIL_TEXT[74].split()
 Mumps = formatted_text(Mumps_list)
 MumpsDate = formatted_text(MumpsDate_list)
 
-WhoopingCough_list = mail_text[75].split()
-WhoopingCoughDate_list = mail_text[76].split()
+WhoopingCough_list = MAIL_TEXT[75].split()
+WhoopingCoughDate_list = MAIL_TEXT[76].split()
 WhoopingCough = formatted_text(WhoopingCough_list)
 WhoopingCoughDate = formatted_text(WhoopingCoughDate_list)
 
-Tuberculosis_list = mail_text[77].split()
-TuberculosisDate_list = mail_text[78].split()
+Tuberculosis_list = MAIL_TEXT[77].split()
+TuberculosisDate_list = MAIL_TEXT[78].split()
 Tuberculosis = formatted_text(Tuberculosis_list)
 TuberculosisDate = formatted_text(TuberculosisDate_list)
 
-Diabetes_list = mail_text[79].split()
-DiabetesDate_list = mail_text[80].split()
+Diabetes_list = MAIL_TEXT[79].split()
+DiabetesDate_list = MAIL_TEXT[80].split()
 Diabetes = formatted_text(Diabetes_list)
 DiabetesDate = formatted_text(DiabetesDate_list)
 
-RheumaticFever_list = mail_text[81].split()
-RheumaticFeverDate_list = mail_text[82].split()
+RheumaticFever_list = MAIL_TEXT[81].split()
+RheumaticFeverDate_list = MAIL_TEXT[82].split()
 RheumaticFever = formatted_text(RheumaticFever_list)
 RheumaticFeverDate = formatted_text(RheumaticFeverDate_list)
 
-Diphtheria_list = mail_text[83].split()
-DiphtheriaDate_list = mail_text[84].split()
+Diphtheria_list = MAIL_TEXT[83].split()
+DiphtheriaDate_list = MAIL_TEXT[84].split()
 Diphtheria = formatted_text(Diphtheria_list)
 DiphtheriaDate = formatted_text(DiphtheriaDate_list)
 
-GermanMeasles_list = mail_text[85].split()
-GermanMeaslesDate_list = mail_text[86].split()
+GermanMeasles_list = MAIL_TEXT[85].split()
+GermanMeaslesDate_list = MAIL_TEXT[86].split()
 GermanMeasles = formatted_text(GermanMeasles_list)
 GermanMeaslesDate = formatted_text(GermanMeaslesDate_list)
 
-Poliomyelitis_list = mail_text[87].split()
-PoliomyelitisDate_list = mail_text[88].split()
+Poliomyelitis_list = MAIL_TEXT[87].split()
+PoliomyelitisDate_list = MAIL_TEXT[88].split()
 Poliomyelitis = formatted_text(Poliomyelitis_list)
 PoliomyelitisDate = formatted_text(PoliomyelitisDate_list)
 
-ChickenPox_list = mail_text[89].split()
-ChickenPoxDate_list = mail_text[90].split()
+ChickenPox_list = MAIL_TEXT[89].split()
+ChickenPoxDate_list = MAIL_TEXT[90].split()
 ChickenPox = formatted_text(ChickenPox_list)
 ChickenPoxDate = formatted_text(ChickenPoxDate_list)
 
-Epilepsy_list = mail_text[91].split()
-EpilepsyDate_list = mail_text[92].split()
+Epilepsy_list = MAIL_TEXT[91].split()
+EpilepsyDate_list = MAIL_TEXT[92].split()
 Epilepsy = formatted_text(Epilepsy_list)
 EpilepsyDate = formatted_text(EpilepsyDate_list)
 
-HeartDisease_list = mail_text[93].split()
-HeartDiseaseDate_list = mail_text[94].split()
+HeartDisease_list = MAIL_TEXT[93].split()
+HeartDiseaseDate_list = MAIL_TEXT[94].split()
 HeartDisease = formatted_text(HeartDisease_list)
 HeartDiseaseDate = formatted_text(HeartDiseaseDate_list)
 
-KidneyDisease_list = mail_text[95].split()
-KidneyDiseaseDate_list = mail_text[96].split()
+KidneyDisease_list = MAIL_TEXT[95].split()
+KidneyDiseaseDate_list = MAIL_TEXT[96].split()
 KidneyDisease = formatted_text(KidneyDisease_list)
 KidneyDiseaseDate = formatted_text(KidneyDiseaseDate_list)
 
 # other medical info
-MedicalPractitioner_list = mail_text[98].split()
+MedicalPractitioner_list = MAIL_TEXT[98].split()
 MedicalPractitioner = formatted_text(MedicalPractitioner_list)
 
-PrescribedMedication_list = mail_text[99].split()
+PrescribedMedication_list = MAIL_TEXT[99].split()
 PrescribedMedication = formatted_text(PrescribedMedication_list)
 
-AllergiesOrAsthma_list = mail_text[100].split()
+AllergiesOrAsthma_list = MAIL_TEXT[100].split()
 AllergiesOrAsthma = formatted_text(AllergiesOrAsthma_list)
 
-InjuriesOrSurgeries_list = mail_text[101].split()
+InjuriesOrSurgeries_list = MAIL_TEXT[101].split()
 InjuriesOrSurgeries = formatted_text(InjuriesOrSurgeries_list)
 
-MedicineDetails_list = mail_text[102].split()
+MedicineDetails_list = MAIL_TEXT[102].split()
 MedicineDetails = formatted_text(MedicineDetails_list)
 
-WearGlasses_list = mail_text[104].split()
+WearGlasses_list = MAIL_TEXT[104].split()
 WearGlasses = formatted_text(WearGlasses_list)
 
-WearGlassesDate_list = mail_text[105].split()
+WearGlassesDate_list = MAIL_TEXT[105].split()
 WearGlassesDate = formatted_text(WearGlassesDate_list)
 
-HearingProblem_list = mail_text[106].split()
+HearingProblem_list = MAIL_TEXT[106].split()
 HearingProblem = formatted_text(HearingProblem_list)
 
-HearingProblemDate_list = mail_text[107].split()
+HearingProblemDate_list = MAIL_TEXT[107].split()
 HearingProblemDate = formatted_text(HearingProblemDate_list)
 
-ChildOtherProblem_list = mail_text[108].split()
+ChildOtherProblem_list = MAIL_TEXT[108].split()
 ChildOtherProblem = formatted_text(ChildOtherProblem_list)
 
-SEN_list = mail_text[109].split()
+SEN_list = MAIL_TEXT[109].split()
 SEN = formatted_text(SEN_list)
 
-NatureOfNeed_list = mail_text[110].split()
+NatureOfNeed_list = MAIL_TEXT[110].split()
 NatureOfNeed = formatted_text(NatureOfNeed_list)
 # -------------------------- x --------------------------
 # -------------------------- 9. Language Spoken --------------------------
-MotherTongue_list = mail_text[114].split()
+MotherTongue_list = MAIL_TEXT[114].split()
 MotherTongue = formatted_text(MotherTongue_list)
 
-SpokenHome_list = mail_text[115].split()
+SpokenHome_list = MAIL_TEXT[115].split()
 SpokenHome = formatted_text(SpokenHome_list)
 # -------------------------- x --------------------------
 # -------------------------- 10. Confirmation --------------------------
-IConfirm_list = mail_text[119].split()
+IConfirm_list = MAIL_TEXT[119].split()
 IConfirm = formatted_text(IConfirm_list)
 
 position_text_page_1(student_name=StudentName, preferred_name=PreferredName, gender=Gender, age=Age, dob=DOB,
@@ -321,7 +367,9 @@ position_text_page_1(student_name=StudentName, preferred_name=PreferredName, gen
                      contact_2_phone=Contact2Phone, contact_2_email=Contact2Email, contact_2_relation=Contact2Relation,
                      other_info=OtherInfo)
 
-position_text_page_2(is_first_year=isFirstYear, prior_school_address_phone_grade_year=PriorSchoolAddressPhoneGradeYear, emergency_treatment=EmergencyTreatment, dress_code=DressCode, field_trip=FieldTrip, photo_video_release=PhotoVideoRelease)
+position_text_page_2(is_first_year=isFirstYear, prior_school_address_phone_grade_year=PriorSchoolAddressPhoneGradeYear,
+                     emergency_treatment=EmergencyTreatment, dress_code=DressCode, field_trip=FieldTrip,
+                     photo_video_release=PhotoVideoRelease)
 
 position_text_page_3(school_directory=SchoolDirectory, q1=Q1, q2=Q2, q3=Q3, q4=Q4, q5=Q5, q6=Q6, q7=Q7,
                      )
@@ -337,10 +385,11 @@ position_text_page_4(meningitis=Meningitis, meningitis_date=MeningitisDate, scar
                      poliomyelitis=Poliomyelitis, poliomyelitis_date=PoliomyelitisDate, chickenpox=ChickenPox,
                      chickenpox_date=ChickenPoxDate, epilepsy=Epilepsy, epilepsy_date=EpilepsyDate,
                      heart_disease=HeartDisease, heart_disease_date=HeartDiseaseDate, kidney_disease=KidneyDisease,
-                     kidney_disease_date=KidneyDiseaseDate, allergies_or_asthma=AllergiesOrAsthma, injuries_or_surgeries=InjuriesOrSurgeries, medicine_details=MedicineDetails)
+                     kidney_disease_date=KidneyDiseaseDate, allergies_or_asthma=AllergiesOrAsthma,
+                     injuries_or_surgeries=InjuriesOrSurgeries, medicine_details=MedicineDetails)
 
-
-position_text_page_5(wear_glasses=WearGlasses, wear_glasses_date=WearGlassesDate, hearing_problem=HearingProblem, hearing_problem_date=HearingProblemDate, child_other_problem=ChildOtherProblem,
-                         mother_tongue=MotherTongue, spoken_home=SpokenHome, SEN=SEN, nature_of_need=NatureOfNeed, i_confirm=IConfirm, medical_practitioner=MedicalPractitioner, prescribed_medication=PrescribedMedication)
-
-
+position_text_page_5(wear_glasses=WearGlasses, wear_glasses_date=WearGlassesDate, hearing_problem=HearingProblem,
+                     hearing_problem_date=HearingProblemDate, child_other_problem=ChildOtherProblem,
+                     mother_tongue=MotherTongue, spoken_home=SpokenHome, SEN=SEN, nature_of_need=NatureOfNeed,
+                     i_confirm=IConfirm, medical_practitioner=MedicalPractitioner,
+                     prescribed_medication=PrescribedMedication)
