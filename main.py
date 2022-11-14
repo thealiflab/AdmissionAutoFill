@@ -1,61 +1,12 @@
 # from paste_text import mail_text
 from functions import position_text_page_1, position_text_page_2, position_text_page_3, position_text_page_4, \
     position_text_page_5, make_pdf
-from tkinter import *
-from tkinter import messagebox
 
-MAIL_TEXT = ""
+from ui import AppUI
 
+app_ui = AppUI()
 
-def send_message():
-    global MAIL_TEXT
-    MAIL_TEXT = text_entry.get("1.0", 'end-1c')
-
-    if len(MAIL_TEXT) == 0:
-        messagebox.showerror("error", "Text field empty!")
-        exit()
-    elif len(MAIL_TEXT) <= 118:
-        messagebox.showerror("error", "Not enough entry text!")
-        exit()
-    else:
-        messagebox.showinfo(title="Success", message="Form has been generated successfully!", )
-        app.destroy()
-
-
-# window object
-app = Tk()
-app.grid_columnconfigure(1, weight=1)
-
-app.title('Admission Form')
-app.geometry('540x540')
-app.iconbitmap("assets/icon_sdis.ico")
-
-# Message
-copied_text = StringVar()
-instruction_label = Label(app, text='Paste the text', font=('bold', 14), pady=35)
-instruction_label.grid(row=0, column=1, sticky=N)
-text_entry = Text(app, width=50, height=20, font=("Bold", 10))
-text_entry.grid(row=1, column=1)
-
-# Buttons
-generate_btn = Button(app, text='Generate Form', width=12, height=2, command=send_message)
-generate_btn.grid(row=2, column=1, pady=20)
-
-
-# On Close
-def on_closing():
-    if messagebox.askokcancel("Quit", "Do you want to quit?"):
-        exit()
-
-
-app.protocol("WM_DELETE_WINDOW", on_closing)
-
-# Footer
-credit_label = Label(app, text='Developed by Alif © Springdale International School-2022', font=('bold', 7), pady=20)
-credit_label.grid(row=5, column=1, sticky=N)
-
-# start
-app.mainloop()
+MAIL_TEXT = app_ui.MAIL_TEXT
 
 MAIL_TEXT.strip()
 
@@ -393,6 +344,5 @@ position_text_page_5(wear_glasses=WearGlasses, wear_glasses_date=WearGlassesDate
                      mother_tongue=MotherTongue, spoken_home=SpokenHome, SEN=SEN, nature_of_need=NatureOfNeed,
                      i_confirm=IConfirm, medical_practitioner=MedicalPractitioner,
                      prescribed_medication=PrescribedMedication)
-
 
 make_pdf()
