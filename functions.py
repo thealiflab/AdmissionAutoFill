@@ -24,7 +24,13 @@ def position_text_page_1(student_name, preferred_name, gender, age, dob, grade_l
     draw.text((625, 590), f"{student_name}", TEXT_COLOR, font=font)
     draw.text((625, 660), f"{preferred_name}", TEXT_COLOR, font=font)
     draw.text((625, 730), f"{dob}", TEXT_COLOR, font=font)
-    draw.text((625, 790), f"{address}", TEXT_COLOR, font=font)
+    if len(address) > 38:
+        address_first_line = address[:38]
+        draw.text((625, 790), f"{address_first_line}", TEXT_COLOR, font=font)
+        address_second_line = address[38:]
+        draw.text((280, 850), f"{address_second_line}", TEXT_COLOR, font=font)
+    else:
+        draw.text((625, 790), f"{address}", TEXT_COLOR, font=font)
 
     if gender == "Male":
         draw.text((1760, 890), "M", TEXT_COLOR, font=font)
@@ -59,7 +65,21 @@ def position_text_page_1(student_name, preferred_name, gender, age, dob, grade_l
     draw.text((1350, 2250), f"{contact_2_relation}", TEXT_COLOR, font=font)
     draw.text((570, 2270), f"{contact_2_phone}", TEXT_COLOR, font=font)
     draw.text((570, 2340), f"{contact_2_email}", TEXT_COLOR, font=font)
-    draw.text((610, 2415), f"{other_info}", TEXT_COLOR, font=font)
+
+    if len(other_info) > 68:
+        other_info_first = other_info[:68]
+        draw.text((600, 2415), f"{other_info_first}", TEXT_COLOR, font=font)
+        if len(other_info[68:]) > 68:
+            temp = other_info[68:]
+            other_info_second = temp[:68]
+            draw.text((600, 2455), f"{other_info_second}", TEXT_COLOR, font=font)
+            draw.text((600, 2490), f"{temp[68:]}", TEXT_COLOR, font=font)
+        else:
+            other_info_second = other_info[68:]
+            draw.text((600, 2455), f"{other_info_second}", TEXT_COLOR, font=font)
+    else:
+        draw.text((600, 2415), f"{other_info}", TEXT_COLOR, font=font)
+
 
     form_page_1.save('output/o1.jpg')
 
@@ -311,7 +331,19 @@ def position_text_page_5(wear_glasses, wear_glasses_date, hearing_problem, heari
     draw.text((700, 340), f"{hearing_problem}", TEXT_COLOR, font=font)
     draw.text((1500, 340), f"{hearing_problem_date}", TEXT_COLOR, font=font)
 
-    draw.text((150, 530), f"{child_other_problem}", TEXT_COLOR, font=font)
+    if len(child_other_problem) > 86:
+        child_other_first = child_other_problem[:86]
+        draw.text((150, 530), f"{child_other_first}", TEXT_COLOR, font=font)
+        if len(child_other_problem[86:]) > 86:
+            temp = child_other_problem[86:]
+            child_other_second = temp[:86]
+            draw.text((150, 605), f"{child_other_second}", TEXT_COLOR, font=font)
+            draw.text((150, 680), f"{temp[86:]}", TEXT_COLOR, font=font)
+        else:
+            child_other_second = child_other_problem[86:]
+            draw.text((150, 605), f"{child_other_second}", TEXT_COLOR, font=font)
+    else:
+        draw.text((150, 530), f"{child_other_problem}", TEXT_COLOR, font=font)
 
     draw.text((920, 900), f"{mother_tongue}", TEXT_COLOR, font=font)
     draw.text((920, 980), f"{spoken_home}", TEXT_COLOR, font=font)
