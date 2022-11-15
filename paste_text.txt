@@ -1,4 +1,4 @@
-mail_text = """Student Information
+Student Information
 -------------------
 Name: Zaima Binte Alam
 PreferredName: Zaima
@@ -6,7 +6,7 @@ Gender: Female
 Age: 6
 DOB: 2021-02-25
 GradeLevel: Preschool
-Address: sfsdfasd
+Address: House 11, Road 55, Gulshan-2, Dhaka-1212, House 11, Road 55, Gulshan-2, Dhaka-12
 Nationality: Bangladeshi
 Religion: afadsd
 PassportOrBirthCertificate: 6466561165
@@ -40,7 +40,7 @@ Contact2Phone: 4534445456
 Contact2Email: dingding@gmail.com
 Contact2Relation: Aunty
 
-OtherInfo: asfasdfasdfasf
+OtherInfo: House 11, Road 55, Gulshan-2
 
 SchoolInfo
 ----------
@@ -106,7 +106,7 @@ WearGlasses: No
 WearGlassesDate: 2020-07-16
 HearingProblem: No
 HearingProblemDate: 2019-07-11
-ChildOtherProblem: asdfasdfsdfasdf
+ChildOtherProblem: House 11, Road 55, Gulshan-2House 11, Road 55, Gulshan-2House 11, Road 55, Gulshan-2HoHouse 11, Road 55, Gulshan-2House 11, Road 55, Gulshan-2House 11, Road 55, Gulshan-2HoHouse 11, Road 55, Gulshan-2House 11, Road 55, Gulshan-2House 11, Road 55, Gulshan-2Ho
 SEN: No
 NatureOfNeed: fasdfasdfsad
 
@@ -118,4 +118,3 @@ SpokenHome: dsasdfs
 Confirmation
 ------------
 IConfirm: I confirm that all the information provided above is accurate.
-"""
