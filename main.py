@@ -63,19 +63,6 @@ AcademicYear = formatted_text(AcademicYear_list)
 
 EnrolmentMonth_list = MAIL_TEXT[13].split()
 EnrolmentMonth = formatted_text(EnrolmentMonth_list)
-
-# print(f"""StudentName: {StudentName}
-# PreferredName: {PreferredName}
-# Gender: {Gender}
-# Age: {Age}
-# DOB: {DOB}
-# GradeLevel: {GradeLevel}
-# Address: {Address}
-# Nationality: {Nationality}
-# Religion: {Religion}
-# PassportOrBirthCertificate: {PassportOrBirthCertificate}
-# AcademicYear: {AcademicYear}
-# EnrolmentMonth: {EnrolmentMonth}""")
 # -------------------------- x --------------------------
 # -------------------------- 2.Siblings Information --------------------------
 
@@ -306,6 +293,7 @@ SpokenHome = formatted_text(SpokenHome_list)
 IConfirm_list = MAIL_TEXT[119].split()
 IConfirm = formatted_text(IConfirm_list)
 
+# -------------------------- Function call to make form --------------------------
 position_text_page_1(student_name=StudentName, preferred_name=PreferredName, gender=Gender, age=Age, dob=DOB,
                      grade_level=GradeLevel, address=Address, nationality=Nationality, religion=Religion,
                      passport_or_certificate=PassportOrBirthCertificate, name_of_sibling=NameOfSibling,
